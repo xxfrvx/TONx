@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TONx - Numbers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #2D2D2D;
+            --card-bg: #1E1E1E;
+            --border: #524F4F;
+            --primary: #0088CC;
+            --text: #E0E0E0;
+            --text-light: #A0A0A0;
+            --text-lighter: #7A7A7A;
+            --green: #4CAF50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+        
+        header {
+            background-color: var(--card-bg);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            height: 32px;
+            width: auto;
+        }
+        
+        .site-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .site-title:hover {
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 0 auto;
+        }
+        
+        .nav-button {
+            text-decoration: none !important;
+            color: var(--text-light) !important;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-button.active {
+            color: var(--text) !important;
+        }
+        .nav-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .nav-button:hover {
+            text-decoration: none !important;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 6px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .ton-price-btn {
+            display: flex;
+            align-items: center;
+            gap: 1px;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            min-width: 4px;
+        }
+        
+        .ton-price-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .ton-price-btn img {
+            height: 25px;
+            width: auto;
+        }
+
+        .ton-price-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .time-container {
+            min-width: 120px;
+            text-align: center;
+            width: 120px;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+        
+        .current-time {
+            font-size: 14px;
+            color: var(--text-light);
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .connect-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .connect-btn {
+            padding: 8px 16px 8px 12px;
+            background-color: var(--border);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .connect-btn.telegram {
+            background-color: var(--primary);
+        }
+        
+        .connect-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .connect-btn img {
+            height: 20px;
+            width: auto;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+        
+        .page-header {
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .page-description {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-container {
+            margin: 16px auto;
+            width: 300px;
+            position: relative;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: var(--card-bg);
+            color: var(--text);
+            background-image: url('https://i.yapx.ru/Y1yez.png');
+            background-size: 16px;
+            background-position: 16px center;
+            background-repeat: no-repeat;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            padding: 10px 20px;
+            background-color: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dropdown-btn::after {
+            content: '↓';
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--card-bg);
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .dropdown-content a {
+            color: var(--text);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .numbers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 32px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .numbers-table th {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+        
+        .numbers-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+        
+        .numbers-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .numbers-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        .number {
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .country {
+            font-size: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        .country:hover {
+            text-decoration: underline;
+        }
+        
+        .value {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .ton-icon {
+            height: 16px;
+            width: auto;
+        }
+        
+        .actual-price {
+            font-size: 12px;
+            color: var(--text-lighter);
+            margin-top: 4px;
+        }
+        
+        .status {
+            font-weight: 500;
+            color: var(--green);
+        }
+        
+        .status.sold {
+            color: #f44336;
+        }
+        
+        .status-detail {
+            font-size: 12px;
+            color: var(--text-lighter);
+            margin-top: 4px;
+        }
+        
+        .footer-note {
+            font-size: 14px;
+            color: var(--text-light);
+            text-align: center;
+            margin: 32px 0;
+            padding: 16px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .footer-description {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        
+        /* Auth modal styles */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .auth-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .auth-header {
+            margin-bottom: 20px;
+        }
+        
+        .auth-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .auth-description {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            transition: all 0.2s;
+        }
+        
+        .auth-btn.telegram {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .auth-btn.ton {
+            background-color: #0088CC;
+            color: white;
+        }
+        
+        .auth-btn img {
+            height: 20px;
+            width: auto;
+        }
+        
+        .auth-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+            
+            .nav-center {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .time-container {
+                margin: 8px 0;
+                width: 100%;
+            }
+            
+            .connect-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .numbers-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .auth-container {
+                margin: 0 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://i.yapx.ru/Y1wOu.png" alt="TONx Logo" class="logo">
+            <a href="navigation.html" class="site-title">TONx</a>
+        </div>
+        
+        <div class="nav-center">
+            <a href="gifts.html" class="nav-button">GIFTS</a>
+            <a href="index.html" class="nav-button">USERNAMES</a>
+            <a href="numbers.html" class="nav-button active">NUMBERS</a>
+            <a href="channels.html" class="nav-button">CHANNELS
+                <span class="new-badge">New</span>
+            </a>
+        </div>
+        
+        <button class="ton-price-btn" id="ton-price-btn" onclick="window.location.href='crypto.html'">
+            <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON">
+            <span id="ton-price">$0.00</span>
+        </button>
+            
+        <div class="time-container">
+            <div class="current-time" id="current-time">Loading Moscow time...</div>
+        </div>
+        
+        <div class="connect-buttons">
+            <button class="connect-btn telegram" id="telegram-auth-btn">
+                <img src="https://i.yapx.ru/Y1yU5.png" alt="Telegram">
+                CONNECT TELEGRAM
+            </button>
+            <button class="connect-btn" id="tonkeeper-auth-btn">
+                <img src="https://i.yapx.ru/Y1yVn.png" alt="Wallet">
+                CONNECT WALLET
+            </button>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <div class="page-header">
+            <h1>ANONYMOUS NUMBERS</h1>
+            <p class="page-description">Buy and sell anonymous virtual numbers for Telegram. Secure your number with blockchain technology and use it for privacy and security in the Telegram ecosystem.</p>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-bar" id="number-search" placeholder="Search by country or number...">
+        </div>
+        
+        <div class="filters">
+            <button class="action-btn" id="add-number-btn">
+                <img src="https://i.yapx.ru/Y18FO.png" alt="Add" width="16">
+                Add number
+            </button>
+
+            <div class="dropdown" id="country-dropdown">
+                <button class="dropdown-btn">Country</button>
+                <div class="dropdown-content">
+                    <a href="#" class="country-filter" data-country="all">All countries</a>
+                    <a href="#" class="country-filter" data-country="usa">USA</a>
+                    <a href="#" class="country-filter" data-country="uk">UK</a>
+                    <a href="#" class="country-filter" data-country="germany">Germany</a>
+                    <a href="#" class="country-filter" data-country="france">France</a>
+                    <a href="#" class="country-filter" data-country="russia">Russia</a>
+                    <a href="#" class="country-filter" data-country="china">China</a>
+                </div>
+            </div>
+            
+            <div class="dropdown" id="status-dropdown">
+                <button class="dropdown-btn">Status</button>
+                <div class="dropdown-content">
+                    <a href="#" class="status-filter" data-status="all">All</a>
+                    <a href="#" class="status-filter" data-status="sold">Sold</a>
+                    <a href="#" class="status-filter" data-status="for-sale">For sale</a>
+                </div>
+            </div>
+            
+            <div class="dropdown" id="value-dropdown">
+                <button class="dropdown-btn">Value</button>
+                <div class="dropdown-content">
+                    <a href="#" class="sort-option" data-sort="asc">Low to high</a>
+                    <a href="#" class="sort-option" data-sort="desc">High to low</a>
+                </div>
+            </div>
+        </div>
+        
+        <table class="numbers-table" id="numbers-table">
+            <thead>
+                <tr>
+                    <th>Phone Number</th>
+                    <th>Country</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-number="+1 (415) 555-0136" data-country="usa" data-status="for-sale">
+                    <td>
+                        <div class="number">+1 (415) 555-0136</div>
+                        <a href="#" class="country">United States</a>
+                    </td>
+                    <td>USA</td>
+                    <td data-value="120">
+                        <div class="value">120 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 2 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+44 7911 123456" data-country="uk" data-status="for-sale">
+                    <td>
+                        <div class="number">+44 7911 123456</div>
+                        <a href="#" class="country">United Kingdom</a>
+                    </td>
+                    <td>UK</td>
+                    <td data-value="95">
+                        <div class="value">95 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 1 week ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+49 176 12345678" data-country="germany" data-status="sold">
+                    <td>
+                        <div class="number">+49 176 12345678</div>
+                        <a href="#" class="country">Germany</a>
+                    </td>
+                    <td>Germany</td>
+                    <td data-value="85">
+                        <div class="value">85 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status sold">sold</div>
+                        <div class="status-detail">Sold 3 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+7 (926) 123-45-67" data-country="russia" data-status="for-sale">
+                    <td>
+                        <div class="number">+7 (926) 123-45-67</div>
+                        <a href="#" class="country">Russia</a>
+                    </td>
+                    <td>Russia</td>
+                    <td data-value="65">
+                        <div class="value">65 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 5 hours ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+33 6 12 34 56 78" data-country="france" data-status="for-sale">
+                    <td>
+                        <div class="number">+33 6 12 34 56 78</div>
+                        <a href="#" class="country">France</a>
+                    </td>
+                    <td>France</td>
+                    <td data-value="75">
+                        <div class="value">75 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 1 day ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+86 131 1234 5678" data-country="china" data-status="for-sale">
+                    <td>
+                        <div class="number">+86 131 1234 5678</div>
+                        <a href="#" class="country">China</a>
+                    </td>
+                    <td>China</td>
+                    <td data-value="110">
+                        <div class="value">110 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 3 weeks ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+1 (212) 555-0189" data-country="usa" data-status="for-sale">
+                    <td>
+                        <div class="number">+1 (212) 555-0189</div>
+                        <a href="#" class="country">United States</a>
+                    </td>
+                    <td>USA</td>
+                    <td data-value="150">
+                        <div class="value">150 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 4 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+44 7700 900123" data-country="uk" data-status="sold">
+                    <td>
+                        <div class="number">+44 7700 900123</div>
+                        <a href="#" class="country">United Kingdom</a>
+                    </td>
+                    <td>UK</td>
+                    <td data-value="125">
+                        <div class="value">125 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status sold">sold</div>
+                        <div class="status-detail">Sold 1 week ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+49 151 12345678" data-country="germany" data-status="for-sale">
+                    <td>
+                        <div class="number">+49 151 12345678</div>
+                        <a href="#" class="country">Germany</a>
+                    </td>
+                    <td>Germany</td>
+                    <td data-value="90">
+                        <div class="value">90 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 2 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+7 (915) 123-45-67" data-country="russia" data-status="for-sale">
+                    <td>
+                        <div class="number">+7 (915) 123-45-67</div>
+                        <a href="#" class="country">Russia</a>
+                    </td>
+                    <td>Russia</td>
+                    <td data-value="70">
+                        <div class="value">70 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 8 hours ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+33 7 12 34 56 78" data-country="france" data-status="sold">
+                    <td>
+                        <div class="number">+33 7 12 34 56 78</div>
+                        <a href="#" class="country">France</a>
+                    </td>
+                    <td>France</td>
+                    <td data-value="80">
+                        <div class="value">80 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status sold">sold</div>
+                        <div class="status-detail">Sold 2 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+86 138 1234 5678" data-country="china" data-status="for-sale">
+                    <td>
+                        <div class="number">+86 138 1234 5678</div>
+                        <a href="#" class="country">China</a>
+                    </td>
+                    <td>China</td>
+                    <td data-value="130">
+                        <div class="value">130 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 1 month ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+1 (310) 555-0198" data-country="usa" data-status="for-sale">
+                    <td>
+                        <div class="number">+1 (310) 555-0198</div>
+                        <a href="#" class="country">United States</a>
+                    </td>
+                    <td>USA</td>
+                    <td data-value="140">
+                        <div class="value">140 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 3 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+44 7456 123456" data-country="uk" data-status="for-sale">
+                    <td>
+                        <div class="number">+44 7456 123456</div>
+                        <a href="#" class="country">United Kingdom</a>
+                    </td>
+                    <td>UK</td>
+                    <td data-value="100">
+                        <div class="value">100 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 5 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+49 171 12345678" data-country="germany" data-status="for-sale">
+                    <td>
+                        <div class="number">+49 171 12345678</div>
+                        <a href="#" class="country">Germany</a>
+                    </td>
+                    <td>Germany</td>
+                    <td data-value="85">
+                        <div class="value">85 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 1 week ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+7 (903) 123-45-67" data-country="russia" data-status="sold">
+                    <td>
+                        <div class="number">+7 (903) 123-45-67</div>
+                        <a href="#" class="country">Russia</a>
+                    </td>
+                    <td>Russia</td>
+                    <td data-value="75">
+                        <div class="value">75 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status sold">sold</div>
+                        <div class="status-detail">Sold 4 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+33 6 98 76 54 32" data-country="france" data-status="for-sale">
+                    <td>
+                        <div class="number">+33 6 98 76 54 32</div>
+                        <a href="#" class="country">France</a>
+                    </td>
+                    <td>France</td>
+                    <td data-value="70">
+                        <div class="value">70 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 2 weeks ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+86 139 1234 5678" data-country="china" data-status="for-sale">
+                    <td>
+                        <div class="number">+86 139 1234 5678</div>
+                        <a href="#" class="country">China</a>
+                    </td>
+                    <td>China</td>
+                    <td data-value="120">
+                        <div class="value">120 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 3 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+1 (347) 555-0192" data-country="usa" data-status="sold">
+                    <td>
+                        <div class="number">+1 (347) 555-0192</div>
+                        <a href="#" class="country">United States</a>
+                    </td>
+                    <td>USA</td>
+                    <td data-value="160">
+                        <div class="value">160 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status sold">sold</div>
+                        <div class="status-detail">Sold 1 week ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+44 7824 123456" data-country="uk" data-status="for-sale">
+                    <td>
+                        <div class="number">+44 7824 123456</div>
+                        <a href="#" class="country">United Kingdom</a>
+                    </td>
+                    <td>UK</td>
+                    <td data-value="110">
+                        <div class="value">110 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 6 days ago</div>
+                    </td>
+                </tr>
+                
+                <tr data-number="+49 160 12345678" data-country="germany" data-status="for-sale">
+                    <td>
+                        <div class="number">+49 160 12345678</div>
+                        <a href="#" class="country">Germany</a>
+                    </td>
+                    <td>Germany</td>
+                    <td data-value="95">
+                        <div class="value">95 <img src="https://i.yapx.ru/Y1uMJ.png" alt="TON" class="ton-icon"></div>
+                        <div class="actual-price">actual price</div>
+                    </td>
+                    <td>
+                        <div class="status">for sale</div>
+                        <div class="status-detail">Listed 4 days ago</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer-note">
+            We take 10% off blockchain technology, we ensure secure and transparent transactions for virtual numbers. These numbers can be used for verificationpurchases
+        </div>
+        
+        <div class="footer-description">
+            Anonymous virtual numbers provide an additional layer of privacy and security for Telegram users. By using 
+        </div>
+         <div class="auth-modal" id="auth-modal">
+        <div class="auth-container">
+            <button class="auth-close" id="auth-close">&times;</button>
+            <div class="auth-header">
+                <h3 class="auth-title" id="auth-title">Connect Wallet</h3>
+                <p class="auth-description" id="auth-description">Choose your preferred wallet to connect</p>
+            </div>
+            <button class="auth-btn telegram" id="modal-telegram-btn">
+                <img src="https://i.yapx.ru/Y1yU5.png" alt="Telegram">
+                Continue with Telegram
+            </button>
+            <button class="auth-btn ton" id="modal-tonkeeper-btn">
+                <img src="https://i.yapx.ru/Y1yVn.png" alt="Tonkeeper">
+                Continue with Tonkeeper
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Update Moscow time without layout shift
+        function updateMoscowTime() {
+    const options = {
+        timeZone: 'Europe/Moscow',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    };
+    const timeElement = document.getElementById('current-time');
+    const newTime = new Date().toLocaleTimeString('en-US', options);
+    
+    if (timeElement.textContent !== newTime) {
+        timeElement.textContent = newTime;
+    }
+}
+        
+        // Fetch TON price and update every minute
+        async function updateTonPrice() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd');
+        const data = await response.json();
+        const price = data['the-open-network'].usd;
+        document.getElementById('ton-price').textContent = `$${price.toFixed(2)}`;
+    } catch (error) {
+        console.error('Ошибка API:', error);
+        document.getElementById('ton-price').textContent = "$—";
+    }
+        }
+        
+        // Initialize time and price updates
+        setInterval(updateMoscowTime, 1000);
+        updateMoscowTime();
+        
+        setInterval(updateTonPrice, 60000); // Update every minute
+        updateTonPrice(); // Initial update
+        
+        // Search functionality
+        document.getElementById('username-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#username-table tbody tr');
+            
+            rows.forEach(row => {
+                const username = row.getAttribute('data-username').toLowerCase();
+                if (username.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('add-username-btn').addEventListener('click', function() {
+    // Здесь будет логика добавления нового username
+    alert('Форма добавления нового username будет здесь');
+});
+        
+        // Sort functionality
+        document.querySelectorAll('.sort-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sortOrder = this.getAttribute('data-sort');
+                const button = document.querySelector('#value-dropdown .dropdown-btn');
+                
+                // Update button text
+                button.textContent = 'Value: ' + this.textContent;
+                
+                const table = document.getElementById('username-table');
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr:not([style*="display: none"])'));
+                
+                rows.sort((a, b) => {
+                    const aValue = parseFloat(a.querySelector('td[data-value]').getAttribute('data-value'));
+                    const bValue = parseFloat(b.querySelector('td[data-value]').getAttribute('data-value'));
+                    
+                    return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+                });
+                
+                // Remove all visible rows
+                rows.forEach(row => tbody.removeChild(row));
+                
+                // Add sorted rows
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+        
+        // Status filter functionality
+        document.querySelectorAll('.status-filter').forEach(filter => {
+            filter.addEventListener('click', function(e) {
+                e.preventDefault();
+                const status = this.getAttribute('data-status');
+                const button = document.querySelector('#status-dropdown .dropdown-btn');
+                
+                // Update button text
+                button.textContent = 'Status: ' + this.textContent;
+                
+                const rows = document.querySelectorAll('#username-table tbody tr');
+                
+                rows.forEach(row => {
+                    const rowStatus = row.getAttribute('data-status');
+                    if (status === 'all' || rowStatus === status) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content').forEach(d => {
+                    d.style.display = 'none';
+                });
+            }
+        });
+        
+        // Toggle dropdowns
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dropdown = this.closest('.dropdown');
+                const content = dropdown.querySelector('.dropdown-content');
+                const isOpen = content.style.display === 'block';
+                
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(d => {
+                    if (d !== content) d.style.display = 'none';
+                });
+                
+                // Toggle this dropdown
+                content.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+        
+        // Auth modal functionality
+        const authModal = document.getElementById('auth-modal');
+const telegramAuthBtn = document.getElementById('telegram-auth-btn');
+const tonkeeperAuthBtn = document.getElementById('tonkeeper-auth-btn');
+const authClose = document.getElementById('auth-close');
+const modalTelegramBtn = document.getElementById('modal-telegram-btn');
+const modalTonkeeperBtn = document.getElementById('modal-tonkeeper-btn');
+const authTitle = document.getElementById('auth-title');
+const authDescription = document.getElementById('auth-description');
+
+// Добавляем обработчик для кнопки с ценой TON
+document.getElementById('ton-price-btn').addEventListener('click', function() {
+    window.location.href = 'crypto.html';
+});
+        
+        telegramAuthBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            authTitle.textContent = 'Connect Telegram';
+            authDescription.textContent = 'Authorize with your Telegram account to continue';
+            authModal.style.display = 'flex';
+        });
+        
+        tonkeeperAuthBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            authTitle.textContent = 'Connect Wallet';
+            authDescription.textContent = 'Choose your preferred wallet to connect';
+            authModal.style.display = 'flex';
+        });
+        
+        authClose.addEventListener('click', function() {
+            authModal.style.display = 'none';
+        });
+        
+        modalTelegramBtn.addEventListener('click', function() {
+            // Telegram auth URL
+            window.location.href = 'https://oauth.telegram.org/auth?bot_id=YOUR_BOT_ID&origin=' + encodeURIComponent(window.location.href);
+        });
+        
+        modalTonkeeperBtn.addEventListener('click', function() {
+            // Tonkeeper auth URL
+            window.location.href = 'https://app.tonkeeper.com/ton-connect';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
